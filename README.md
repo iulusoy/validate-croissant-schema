@@ -1,8 +1,9 @@
 # Croissant Metadata Validator
 
-[![GitHub Actions](https://github.com/iulusoy/validate-croissant-schema/workflows/Test%20Error%20Handling/badge.svg)](https://github.com/iulusoy/validate-croissant-schema/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![License: MIT](https://img.shields.io/github/license/iulusoy/validate-croissant-schema)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/iulusoy/validate-croissant-schema/test.yml?branch=main)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/downloads/)
+
 
 A GitHub Action to validate Croissant metadata files using the [mlcroissant](https://github.com/mlcommons/croissant) Python package.
 
