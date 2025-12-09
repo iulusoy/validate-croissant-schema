@@ -17,6 +17,6 @@ jobs:
       - name: Test action
         uses: iulusoy/verify-croissant-schema@main
         with:
-          file: 'test/metadata.json'
+          file: '.github/workflows/test/test.json'
           python-version: '3.10'
 

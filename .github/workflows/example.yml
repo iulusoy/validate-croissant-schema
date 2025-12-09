@@ -17,6 +17,6 @@ jobs:
       - name: Validate Croissant metadata
         uses: iulusoy/verify-croissant-schema@main
         with:
-          file: 'croissant.json'  # Change this to your metadata file path
+          file: '.github/workflows/croissant.json'  # Change this to your metadata file path
           python-version: '3.10'
 
