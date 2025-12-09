@@ -1,0 +1,53 @@
+name: Test Error Handling
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-missing-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Test missing file error
+        id: missing_file
+        uses: ./
+        with:
+          file: "nonexistent/file.json"
+        continue-on-error: true
+      
+      - name: Verify action failed with correct error
+        run: |
+          if [ "${{ steps.missing_file.outcome }}" == "failure" ]; then
+            echo "✅ Action correctly failed for missing file"
+          else
+            echo "❌ Action should have failed for missing file"
+            exit 1
+          fi
+
+  test-invalid-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create invalid metadata file
+        id: invalid_metadata
+        uses: ./
+        with:
+          file: ".github/workflows/invalid_croissant.json"
+        continue-on-error: true
+
+      - name: Verify action failed with correct error
+        run: |
+          if [ "${{ steps.invalid_metadata.outcome }}" == "failure" ]; then
+            echo "✅ Action correctly failed for faulty metadata"
+          else
+            echo "❌ Action should have failed for faulty metadata"
+            exit 1
+          fi

@@ -1,17 +1,17 @@
-name: 'Croissant Metadata Validator'
-description: 'Validate Croissant metadata files using mlcroissant'
+name: "Croissant Metadata Validator"
+description: "Validate Croissant metadata files using mlcroissant"
 
 inputs:
   file:
-    description: 'Path to the Croissant metadata file to validate'
+    description: "Path to the Croissant metadata file to validate"
     required: true
   python-version:
-    description: 'Python version to use'
+    description: "Python version to use"
     required: false
-    default: '3.13'
+    default: "3.13"
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - name: Set up Python ${{ inputs.python-version }}
       uses: actions/setup-python@v5
@@ -30,10 +30,7 @@ runs:
         fi
         
         echo "Validating Croissant metadata file: ${{ inputs.file }}"
-        if command -v mlcroissant >/dev/null 2>&1; then
-          mlcroissant validate --jsonld "${{ inputs.file }}"
-        else
-          python -m mlcroissant validate --jsonld "${{ inputs.file }}"
-        fi
+        mlcroissant validate --jsonld "${{ inputs.file }}" || exit 1
+        echo "✅ Croissant metadata validation passed."
       shell: bash
 
